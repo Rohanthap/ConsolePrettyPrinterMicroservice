@@ -41,3 +41,5 @@ This script generates ASCII bar charts from data points. Example usage:
 python ascii_chart.py --data "A:10,B:20,C:15,D:35"
 
 Each data point must be in the format label:value and separated by commas.
+
+![image](https://github.com/user-attachments/assets/623adc6f-e324-4151-a887-9e1df8056ade)
