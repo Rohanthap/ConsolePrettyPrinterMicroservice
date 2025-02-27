@@ -14,8 +14,6 @@ This project provides a simple microservice that allows you to print colored tex
    - Using `client.py`
    - Using `curl`
 5. Example Output
-6. Contributing
-7. License
 
 ---
 
@@ -43,17 +41,11 @@ This project provides a simple microservice that allows you to print colored tex
 git clone https://github.com/your-username/colored-text-graph-microservice.git
 cd colored-text-graph-microservice
 
-Copy
-
 2. Install the required Python libraries:
 pip install Flask termcolor requests
 
-Copy
-
 3. Start the server:
 python server.py
-
-Copy
 
 The server will run on `http://localhost:5000`.
 
@@ -99,12 +91,8 @@ The `client.py` script is an optional test file that demonstrates how to interac
 1. Run the server:
 python server.py
 
-Copy
-
 2. In a separate terminal, run the client script:
 python client.py
-
-Copy
 
 The script will:
 - Print styled text in green (bold and underlined), blue (bold), and red.
@@ -128,16 +116,12 @@ curl -X POST http://localhost:5000/print
 "underline": true
 }'
 
-Copy
-
 2. **Create ASCII Graph**:
 curl -X POST http://localhost:5000/graph
 -H "Content-Type: application/json"
 -d '{
 "values": [3.5, 7.2, 4.8, 6.1]
 }'
-
-Copy
 
 ---
 
@@ -148,24 +132,12 @@ Hello, World! # Green, bold, and underlined
 This is a test. # Blue and bold
 Goodbye! # Red
 
-Copy
-
 ### ASCII Graph
 ███ 3.5
 ███████ 7.2
 █████ 4.8
 ██████ 6.1
 
-Copy
-
 ---
-
-## Contributing
-
-Contributions are welcome! If you'd like to improve this project, please:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix.
-3. Submit a pull request.
 
 ![image](https://github.com/user-attachments/assets/623adc6f-e324-4151-a887-9e1df8056ade)
