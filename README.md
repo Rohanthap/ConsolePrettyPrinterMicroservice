@@ -1,45 +1,171 @@
-ASCII Chart and Text Renderer
+# Colored Text and ASCII Graph Microservice
 
-This repository contains two console utilities:
+This project provides a simple microservice that allows you to print colored text and create ASCII graphs using a REST API. The server (`server.py`) handles requests and returns styled text or graphs, while the client (`client.py`) is an optional test script to demonstrate the functionality.
 
-Text Renderer: A Python script to print styled and colored text to the console.
+---
 
-ASCII Chart: A Python script to generate simple ASCII bar charts from data points.
+## Table of Contents
 
-Installation
+1. Features
+2. Requirements
+3. Setup
+4. Usage
+   - Server Endpoints
+   - Using `client.py`
+   - Using `curl`
+5. Example Output
+6. Contributing
+7. License
 
-Prerequisites
+---
 
-Ensure you have Python installed on your system (Python 3.x recommended).
+## Features
 
-Installing Required Dependencies
+- **Colored Text**: Print text to the client with custom colors, bold, and underline styles.
+- **ASCII Graphs**: Generate simple bar graphs using ASCII characters from a list of float values.
+- **REST API**: Interact with the microservice using HTTP POST requests.
+- **Client Script**: Optional `client.py` script to test the server functionality.
 
-Both scripts require colorama for colored text output. Install it using pip:
+---
 
-pip install colorama
+## Requirements
 
-Usage
+- Python 3.x
+- Flask (`pip install Flask`)
+- termcolor (`pip install termcolor`)
+- requests (for `client.py`, `pip install requests`)
 
-Text Renderer
+---
 
-The text renderer prints styled text to the console. Example usage:
+## Setup
 
-python text_renderer.py --text "Hello, World!" --color blue --style bold underline
+1. Clone the repository:
+git clone https://github.com/your-username/colored-text-graph-microservice.git
+cd colored-text-graph-microservice
 
-Available colors:
+Copy
 
-black, red, green, yellow, blue, magenta, cyan, white
+2. Install the required Python libraries:
+pip install Flask termcolor requests
 
-Available styles:
+Copy
 
-bold, dim, underline, normal
+3. Start the server:
+python server.py
 
-ASCII Chart Generator
+Copy
 
-This script generates ASCII bar charts from data points. Example usage:
+The server will run on `http://localhost:5000`.
 
-python ascii_chart.py --data "A:10,B:20,C:15,D:35"
+---
 
-Each data point must be in the format label:value and separated by commas.
+## Usage
+
+### Server Endpoints
+
+The server provides two endpoints:
+
+1. **Print Styled Text**:
+- **Endpoint**: `/print`
+- **Method**: `POST`
+- **Request Body**:
+  ```
+  {
+    "text": "Your text here",
+    "color": "green",
+    "bold": true,
+    "underline": true
+  }
+  ```
+- **Response**: Returns the styled text with ANSI escape codes for colors and styles.
+
+2. **Create ASCII Graph**:
+- **Endpoint**: `/graph`
+- **Method**: `POST`
+- **Request Body**:
+  ```
+  {
+    "values": [3.5, 7.2, 4.8, 6.1]
+  }
+  ```
+- **Response**: Returns an ASCII bar graph as plain text.
+
+---
+
+### Using `client.py`
+
+The `client.py` script is an optional test file that demonstrates how to interact with the server. It sends requests to the server and prints the responses.
+
+1. Run the server:
+python server.py
+
+Copy
+
+2. In a separate terminal, run the client script:
+python client.py
+
+Copy
+
+The script will:
+- Print styled text in green (bold and underlined), blue (bold), and red.
+- Generate and display an ASCII graph.
+
+You can modify `client.py` to test different inputs or integrate its functions into your own code.
+
+---
+
+### Using `curl`
+
+If you prefer to use `curl` instead of `client.py`, you can send requests directly to the server. Below are examples of how to use `curl` to interact with the server.
+
+1. **Print Styled Text**:
+curl -X POST http://localhost:5000/print
+-H "Content-Type: application/json"
+-d '{
+"text": "Hello, World!",
+"color": "green",
+"bold": true,
+"underline": true
+}'
+
+Copy
+
+2. **Create ASCII Graph**:
+curl -X POST http://localhost:5000/graph
+-H "Content-Type: application/json"
+-d '{
+"values": [3.5, 7.2, 4.8, 6.1]
+}'
+
+Copy
+
+---
+
+## Example Output
+
+### Styled Text
+Hello, World! # Green, bold, and underlined
+This is a test. # Blue and bold
+Goodbye! # Red
+
+Copy
+
+### ASCII Graph
+███ 3.5
+███████ 7.2
+█████ 4.8
+██████ 6.1
+
+Copy
+
+---
+
+## Contributing
+
+Contributions are welcome! If you'd like to improve this project, please:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bugfix.
+3. Submit a pull request.
 
 ![image](https://github.com/user-attachments/assets/623adc6f-e324-4151-a887-9e1df8056ade)
