@@ -4,7 +4,7 @@ from termcolor import colored
 
 app = Flask(__name__)
 
-def create_ascii_graph(data):
+def create_ascii_bar_graph(data):
     graph = ""
     for value in data:
         rounded_value = round(value, 2)
@@ -47,7 +47,7 @@ def create_graph():
     if not all(isinstance(val, (int, float)) for val in values):
         return "Error: All values must be numbers\n", 400
 
-    graph = create_ascii_graph(values)
+    graph = create_ascii_bar_graph(values)
 
     return graph
 
