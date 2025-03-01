@@ -1,4 +1,5 @@
 from flask import Flask, request
+from os import environ
 from termcolor import colored
 
 app = Flask(__name__)
@@ -57,4 +58,4 @@ def create_graph():
 
 # Run the Flask app
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='localhost', port=environ['PORT'] or 5000)
