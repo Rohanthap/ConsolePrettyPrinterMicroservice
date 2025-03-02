@@ -1,14 +1,14 @@
 from flask import Flask, request
+from os import environ
 from termcolor import colored
 
 app = Flask(__name__)
 
-# Helper function to create an ASCII bar graph
-def create_ascii_graph(data):
+def create_ascii_bar_graph(data):
     graph = ""
     for value in data:
-        rounded_value = round(value, 2)  # Round to 2 decimal places
-        bar = "█" * int(rounded_value)  # Use block characters for the bar
+        rounded_value = round(value, 2)
+        bar = "█" * int(rounded_value)  # Create bar from block characters
         graph += f"{bar} {rounded_value}\n"
     return graph
 
@@ -17,13 +17,12 @@ def create_ascii_graph(data):
 def print_text():
     data = request.json
 
-    # Extract text, color, and style from the request
+    # Extract text and styles from the request
     text = data.get('text', '')
     color = data.get('color', 'white')
     bold = data.get('bold', False)
     underline = data.get('underline', False)
 
-    # Prepare attributes list, excluding None
     attrs = []
     if bold:
         attrs.append('bold')
@@ -33,7 +32,6 @@ def print_text():
     # Apply styles using termcolor
     styled_text = colored(text, color, attrs=attrs)
 
-    # Add a newline character to the styled text
     styled_text_with_newline = styled_text + "\n"
 
     # Return the raw ANSI-colored text to the client
@@ -49,12 +47,10 @@ def create_graph():
     if not all(isinstance(val, (int, float)) for val in values):
         return "Error: All values must be numbers\n", 400
 
-    # Generate the ASCII graph
-    graph = create_ascii_graph(values)
+    graph = create_ascii_bar_graph(values)
 
-    # Return the graph to the client
     return graph
 
 # Run the Flask app
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='localhost', port=environ['PORT'] or 5000)
