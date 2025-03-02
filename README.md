@@ -116,11 +116,18 @@ curl -X POST http://localhost:5000/print
 "underline": true
 }'
 
-2. **Create ASCII Graph**:
-curl -X POST http://localhost:5000/graph
+2. **Create ASCII Bar Graph**:
+curl -X POST http://localhost:5000/graph/bar
 -H "Content-Type: application/json"
 -d '{
 "values": [3.5, 7.2, 4.8, 6.1]
+}'
+
+3. **Create ASCII Bar Graph**:
+curl -X POST http://localhost:5000/graph/line
+-H "Content-Type: application/json"
+-d '{
+"values": [[0,10], [1,30], [2,20], [3,50], [4,40]]
 }'
 
 ---
@@ -132,11 +139,26 @@ Hello, World! # Green, bold, and underlined
 This is a test. # Blue and bold
 Goodbye! # Red
 
-### ASCII Graph
+### ASCII Bar Graph
 ███ 3.5
 ███████ 7.2
 █████ 4.8
 ██████ 6.1
+
+### ASCII Line Graph
+ 50.00 |                                      ****
+ 46.00 |                                    **    ******
+ 42.00 |                                  **            ***
+ 38.00 |                                 *
+ 34.00 |                               **
+ 30.00 |            ****              *
+ 26.00 |          **    ****        **
+ 22.00 |        **          ****  **
+ 18.00 |     ***                **
+ 14.00 |   **
+ 10.00 | **
+       --------------------------------------------------
+        0.00  0.50  1.00  1.50  2.00  2.50  3.00  3.50  4.00
 
 ---
 
